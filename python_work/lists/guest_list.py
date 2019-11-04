@@ -36,26 +36,9 @@ for guest in guest_list:
 print("\nHey you only invite 2 people, you're fucked")
 
 # Now i have to take out 10 people from my list
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
-removed_guess = guest_list.pop()
-print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
+for i in range(len(guest_list) - 2):
+    removed_guess = guest_list.pop()
+    print(f"\nHey {removed_guess.title()}, sorry i had to take you off the list")
 
 for guest in guest_list: 
     invite = f"\nHello {guest.title()}, you're cordially invited to my dinner party at kost :)"
