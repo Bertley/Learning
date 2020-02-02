@@ -1,0 +1,17 @@
+least_places = ['nfld', 'congo', 'area51', 'coney island', 'ireland']
+
+print(least_places)
+print(sorted(least_places))
+print(least_places)
+sorted_places = sorted(least_places)
+print(sorted_places)
+sorted_places.reverse()
+print(sorted_places)
+print(least_places)
+least_places.reverse()
+print(least_places)
+least_places.reverse()
+print(least_places)
+least_places.sort()
+print(least_places)
+least_places.sort(reverse=True)
