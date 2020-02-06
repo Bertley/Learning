@@ -20,14 +20,19 @@ def rotation(list1, list2):
 
     for i in range(len(list2)): 
         if list2[i] == key:
+            # When it finds the the first value of array 1 in two.
             key_index = i 
             # force a jump out of the loop
             break 
 
+    # If it goes through the loop and doesn't find anything 
     if key_index == 0:
         return False
 
+    # loop through list 1 
     for x in range(len(list1)): 
+        # Check all the values in loop 2 starting from the key_index
+        # And go to zero when list 2 in finish.
         l2index = (key_index + x) % len(list1)
 
         if list1[x] != list2[l2index]: 

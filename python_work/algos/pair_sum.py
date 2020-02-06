@@ -30,7 +30,7 @@ def pair_sum(array, k):
     print('\n'.join(map(str, list(output))))
 
 
-pair_sum([1, 3, 2, 2, 4, 0], 4)
+pair_sum([1, 3, 2, 2], 4)
 
 '''
 Look up methods 

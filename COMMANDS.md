@@ -1,4 +1,4 @@
-# Console Commands to remember
+# Console Commands to Remember
 
 ## Return size of folders 
 ```
