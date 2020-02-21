@@ -1,3 +1,3 @@
-[submodule "google-hashcode/js"]
-	path = google-hashcode/js
+[submodule "Google-hashcode/js"]
+	path = Google-hashcode/js
 	url = https://github.com/arashemadi/hash-code.git
