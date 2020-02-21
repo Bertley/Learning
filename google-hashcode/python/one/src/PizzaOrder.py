@@ -1,5 +1,5 @@
 # function to return the index  
-def getSubArray(arr, n, K, output = None, currentSum = 0, result = None): 
+def pizzaOrder(arr, n, K, output = None, currentSum = 0, result = None): 
     if output == None: 
         currentSum = 0
         previousDifference = 0
@@ -31,15 +31,15 @@ def getSubArray(arr, n, K, output = None, currentSum = 0, result = None):
             return [*range(result[0], result[1] + 1)]
         else:
             print('+here')
-            return getSubArray(arr, n, K, [*range(result[0], result[1] + 1)], currentSum)
+            return pizzaOrder(arr, n, K, [*range(result[0], result[1] + 1)], currentSum)
     else: 
         if currentSum == K:   
             print('here+')  
             return output
         else:
             print('here-')  
-            print([*getSubArray(arr[:output[0]], len(arr[:output[0]]), K - (currentSum - arr[output[0]])), *output[1:]])
-            return getSubArray(arr, n, K, [ *getSubArray(arr[:output[0]], len(arr[:output[0]]), K - (currentSum - arr[output[0]])), *output[1:]], currentSum)
+            print([*pizzaOrder(arr[:output[0]], len(arr[:output[0]]), K - (currentSum - arr[output[0]])), *output[1:]])
+            return pizzaOrder(arr, n, K, [ *pizzaOrder(arr[:output[0]], len(arr[:output[0]]), K - (currentSum - arr[output[0]])), *output[1:]], currentSum)
     
   
 
@@ -56,7 +56,7 @@ def main():
     # K = 100
     
     
-    pizzas = getSubArray(arr, n, K)
+    pizzas = pizzaOrder(arr, n, K)
 
     sum = 0 
     for p in pizzas: 

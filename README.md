@@ -1,1 +1,1 @@
-# Python continuous education
+# Continuous education

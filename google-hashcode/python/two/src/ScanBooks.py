@@ -52,30 +52,33 @@ class ScanBooks:
        
         for j in schedule: 
             scanned[j] = [[j, 0], []]
-        
+
         for i in range(self.days): 
-            print('Day {}'.format(i)) 
-            for j in rates: 
-                if j in schedule: 
-                    if schedule[j] <= i: 
-                        toScann = 0
-                        while toScann < libraries[j][0][2]: # update to use L[N]
-                            if len(books) == 0 or len(self.libraries[j][1]) == 0:  
-                                pass
-                            else:
-                                print('Scanning from {}'.format(j))
-                                scannedBooks = self.scanFacility(self.libraries[j][1], books)
-                                print(self.libraries[j][1])
-                                if scannedBooks is not None: 
-                                    books.pop(scannedBooks) 
-                                    self.libraries[j][1].remove(scannedBooks)
-                                    scanned[j][1].append(scannedBooks)
-                                    scanned[j][0][1] = len(scanned[j][1])
-                                else: 
+            if books: 
+                print('Day {}'.format(i)) 
+                for j in rates: 
+                    if j in schedule: 
+                        if schedule[j] <= i: 
+                            toScann = 0
+                            while toScann < libraries[j][0][2]: # update to use L[N]
+                                if len(books) == 0 or len(self.libraries[j][1]) == 0:  
                                     pass
-                            toScann += 1 
-                else: 
-                    pass
+                                else:
+                                    print('Scanning from facility {}'.format(j))
+                                    scannedBooks = self.scanFacility(self.libraries[j][1], books)
+                                    print(self.libraries[j][1])
+                                    if scannedBooks is not None: 
+                                        books.pop(scannedBooks) 
+                                        self.libraries[j][1].remove(scannedBooks)
+                                        scanned[j][1].append(scannedBooks)
+                                        scanned[j][0][1] = len(scanned[j][1])
+                                    else: 
+                                        pass
+                                toScann += 1 
+                    else: 
+                        pass
+            else: 
+                pass 
 
         print('Scanning process complete') 
         print(scanned)            
