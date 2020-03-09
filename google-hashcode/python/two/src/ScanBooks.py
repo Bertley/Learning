@@ -6,14 +6,13 @@ class ScanBooks:
         self.libraries = libraries
         self.books = books
         self.days = days
-
-
-    def calculateScore(self, indexes, booksperday, velocity): 
+    # O(n)
+    def calculateScore(self, indexes, booksperday, signup): 
         sumOfBooks = 0
         for i in indexes:
             sumOfBooks += self.books[i]
-        return sumOfBooks/(math.ceil(len(indexes) / booksperday) + velocity)
-
+        return sumOfBooks/(math.ceil(len(indexes) / booksperday) + signup)
+    # O(n)
     def gradeLibraries(self): 
         result = {}
         i = 0 
@@ -21,14 +20,14 @@ class ScanBooks:
             result[i] = self.calculateScore(lib[1], lib[0][2], lib[0][1])
             i += 1
         return sorted(result, key=result.get, reverse=True)
-
+    # O(n)
     def getSchedule(self): 
         schedule = {}
         rates = self.gradeLibraries()
         for a in rates: 
             schedule[a] = sum(schedule.values()) + self.libraries[a][0][1] 
         return schedule       
-
+    # O(n)
     def scanFacility(self, libraryBooks, books): 
         index = None
         bookScore = 0 
@@ -42,20 +41,23 @@ class ScanBooks:
                         bookScore = books[b] 
                         index = b 
         return index
-
+    # O(n) 
+    def prepareOutput(self, schedule): 
+        scanned = []
+        for j in schedule: 
+            scanned.append([[j, 0], []])
+        return scanned
+    # O(n)
     def run(self): 
         rates = self.gradeLibraries()
-        # libraries = self.libraries
-        scanned = {}
+        libraries = self.libraries
         schedule = self.getSchedule()
         books = {i : self.books[i] for i in range(0, len(self.books))}
-       
-        for j in schedule: 
-            scanned[j] = [[j, 0], []]
+        scanned = self.prepareOutput(schedule)
 
         for i in range(self.days): 
             if books: 
-                print('Day {}'.format(i)) 
+                # print('Day {}'.format(i)) 
                 for j in rates: 
                     if j in schedule: 
                         if schedule[j] <= i: 
@@ -64,9 +66,9 @@ class ScanBooks:
                                 if len(books) == 0 or len(self.libraries[j][1]) == 0:  
                                     pass
                                 else:
-                                    print('Scanning from facility {}'.format(j))
+                                    # print('Scanning from facility {}'.format(j))
                                     scannedBooks = self.scanFacility(self.libraries[j][1], books)
-                                    print(self.libraries[j][1])
+                                    # print(self.libraries[j][1])
                                     if scannedBooks is not None: 
                                         books.pop(scannedBooks) 
                                         self.libraries[j][1].remove(scannedBooks)
@@ -80,21 +82,27 @@ class ScanBooks:
             else: 
                 pass 
 
-        print('Scanning process complete') 
-        print(scanned)            
-        # return scanned
+        # print('Scanning process complete') 
+        # print(scanned)            
+        return scanned
 
 books = [1, 2, 3, 6, 5, 4]
 libraries = [
     [
-        [5, 2, 2], 
+        [5, 1, 2], 
         [0, 1, 2, 3, 4]
     ], 
     [
-        [4, 3, 1], 
+        [4, 2, 1], 
         [0, 2, 3, 5]
     ]
 ]   
 
 days = 7 
-ScanBooks(books, libraries, days).run()
+scanbooks = ScanBooks(books, libraries, days).run()
+
+
+for i in scanbooks: 
+    print(' '.join(map(str,i[0])))
+    print(' '.join(map(str,i[1])))
+    print()
